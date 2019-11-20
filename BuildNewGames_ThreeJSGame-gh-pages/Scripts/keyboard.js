@@ -8,6 +8,8 @@ var Key = {
   W: 87,
   D: 68,
   S: 83,
+  J: 74,
+  L: 76,
   SPACE: 32,
   
   isDown: function(keyCode) {
