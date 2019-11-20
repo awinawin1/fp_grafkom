@@ -58,10 +58,10 @@ function createScene()
 	  HEIGHT = 360;
 
 	// set some camera attributes
-	var VIEW_ANGLE = 50,
+	var VIEW_ANGLE = 70,
 	  ASPECT = WIDTH / HEIGHT,
 	  NEAR = 0.1,
-	  FAR = 10000;
+	  FAR = 20000;
 
 	var c = document.getElementById("gameCanvas");
 
@@ -82,7 +82,9 @@ function createScene()
 	
 	// set a default position for the camera
 	// not doing this somehow messes up shadow rendering
-	camera.position.z = 300;
+	camera.position.z = 150;
+	camera.position.y = 70;
+	//camara.position.x = 10;
 	
 	// start the renderer
 	renderer.setSize(WIDTH, HEIGHT);
@@ -107,23 +109,23 @@ function createScene()
 		{
 		  color: 0xFF4045
 		});
-	// create the plane's material	
+	// membuat papan pong	
 	var planeMaterial =
 	  new THREE.MeshLambertMaterial(
 		{
-		  color: 0x4BD121
+		  color: 0x4D3A3A
 		});
-	// create the table's material
+	// membuat meja penyangga pong
 	var tableMaterial =
 	  new THREE.MeshLambertMaterial(
 		{
-		  color: 0x111111
+		  color: 0x160B06
 		});
 	// create the pillar's material
 	var pillarMaterial =
 	  new THREE.MeshLambertMaterial(
 		{
-		  color: 0x534d0d
+		  color: 0xDBA16B
 		});
 	// create the ground's material
 	var groundMaterial =
@@ -245,12 +247,12 @@ function createScene()
 		
 	// we iterate 10x (5x each side) to create pillars to show off shadows
 	// this is for the pillars on the left
-	for (var i = 0; i < 5; i++)
+	for (var i = 0; i < 1; i++)
 	{
 		var backdrop = new THREE.Mesh(
 		
 		  new THREE.CubeGeometry( 
-		  30, 
+		  400, 
 		  30, 
 		  300, 
 		  1, 
@@ -268,12 +270,12 @@ function createScene()
 	}
 	// we iterate 10x (5x each side) to create pillars to show off shadows
 	// this is for the pillars on the right
-	for (var i = 0; i < 5; i++)
+	for (var i = 0; i < 1; i++)
 	{
 		var backdrop = new THREE.Mesh(
 
 		  new THREE.CubeGeometry( 
-		  30, 
+		  400, 
 		  30, 
 		  300, 
 		  1, 
@@ -313,11 +315,11 @@ function createScene()
 	  new THREE.PointLight(0xF8D898);
 
 	// set its position
-	pointLight.position.x = -1000;
+	pointLight.position.x = -100;
 	pointLight.position.y = 0;
-	pointLight.position.z = 1000;
+	pointLight.position.z = 100;
 	pointLight.intensity = 2.9;
-	pointLight.distance = 10000;
+	pointLight.distance = 1000;
 	// add to the scene
 	scene.add(pointLight);
 		
@@ -536,12 +538,18 @@ function cameraPhysics()
 	spotLight.position.y = ball.position.y * 2;
 	
 	// move to behind the player's paddle
-	camera.position.x = paddle1.position.x - 100;
+	camera.position.x = paddle1.position.x - 200;
 	camera.position.y += (paddle1.position.y - camera.position.y) * 0.05;
 	camera.position.z = paddle1.position.z + 100 + 0.04 * (-ball.position.x + paddle1.position.x);
 	
+<<<<<<< HEAD
 	// rotate to face towards the player2
 	camera.rotation.x = -0.01 * (ball.position.y) * Math.PI/180;
+=======
+	// rotate to face towards the opponent
+	camera.rotation.x = Math.PI/180;
+	//tinggi
+>>>>>>> 8e83fb5bf057b80c18707c13893e0b3870f9c9f3
 	camera.rotation.y = -60 * Math.PI/180;
 	camera.rotation.z = -90 * Math.PI/180;
 }
