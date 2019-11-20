@@ -82,7 +82,7 @@ function createScene()
 	
 	// set a default position for the camera
 	// not doing this somehow messes up shadow rendering
-	camera.position.z = 320;
+	camera.position.z = 300;
 	
 	// start the renderer
 	renderer.setSize(WIDTH, HEIGHT);
