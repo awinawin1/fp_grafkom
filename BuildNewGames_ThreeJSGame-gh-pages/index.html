@@ -24,6 +24,23 @@
 				margin:0;
 				color: white;
 			}
+			#container {
+				width: 500px;
+				margin: auto;
+			}
+			#player2 {
+				width: 150px;
+				float: left;
+				height: 300px;
+			}
+			#player1 {
+				width: 300px;
+				float: left;
+				height: 300px;
+			}
+			#clear {
+  	  			clear: both;
+			}
 			#title {
 				background-color: white;
 				color: black;
@@ -36,11 +53,24 @@
 		<script src='./Scripts/keyboard.js'></script>
 		<script src='./Scripts/game.js'></script>
 		<div id='scoreboard'>
-			<h1 id='scores'>0-0</h1>
+			<h2 id='scores'>0-0</h2>
 			<h1 id='title'>3D PONG</h1>
 			<h2 id='winnerBoard'>First to 7 wins!</h2>
-			<h3>A - move left
-			<br>D - move right</h3>
+			<div id="container">
+				<div id="player1">
+					<h3>Player 1
+					<br>A - move left
+					<br>D - move right
+					</h3>
+				</div>
+				<div id="player2">
+					<h3>Player 2
+					<br>J - move left
+					<br>L - move right
+					</h3>
+				</div>
+				<!-- <div id="clear"> -->
+			</div>
 		</div>
 	</body>
 </html>

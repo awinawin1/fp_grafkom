@@ -28,8 +28,8 @@ var score1 = 0, score2 = 0;
 // you can change this to any positive whole number
 var maxScore = 7;
 
-// set opponent reflexes (0 - easiest, 1 - hardest)
-var difficulty = 0.2;
+// set player2 reflexes (0 - easiest, 1 - hardest)
+// var difficulty = 0.2;
 
 // ------------------------------------- //
 // ------- GAME FUNCTIONS -------------- //
@@ -40,7 +40,7 @@ function setup()
 	// update the board to reflect the max score for match win
 	document.getElementById("winnerBoard").innerHTML = "First to " + maxScore + " wins!";
 	
-	// now reset player and opponent scores
+	// now reset player and player2 scores
 	score1 = 0;
 	score2 = 0;
 	
@@ -344,11 +344,12 @@ function draw()
 	paddlePhysics();
 	cameraPhysics();
 	playerPaddleMovement();
-	opponentPaddleMovement();
+	player2PaddleMovement();
 }
 
 function ballPhysics()
 {
+	ballSpeed+=0.005;
 	// if ball goes off the 'left' side (Player's side)
 	if (ball.position.x <= -fieldWidth/2)
 	{	
@@ -402,7 +403,7 @@ function ballPhysics()
 }
 
 // Handles CPU paddle movement and logic
-function opponentPaddleMovement()
+function player2PaddleMovement()
 {
 	if (Key.isDown(Key.J))		
 	{
@@ -539,7 +540,7 @@ function cameraPhysics()
 	camera.position.y += (paddle1.position.y - camera.position.y) * 0.05;
 	camera.position.z = paddle1.position.z + 100 + 0.04 * (-ball.position.x + paddle1.position.x);
 	
-	// rotate to face towards the opponent
+	// rotate to face towards the player2
 	camera.rotation.x = -0.01 * (ball.position.y) * Math.PI/180;
 	camera.rotation.y = -60 * Math.PI/180;
 	camera.rotation.z = -90 * Math.PI/180;
@@ -569,13 +570,13 @@ function paddlePhysics()
 				ballDirX = -ballDirX;
 				// we impact ball angle when hitting it
 				// this is not realistic physics, just spices up the gameplay
-				// allows you to 'slice' the ball to beat the opponent
+				// allows you to 'slice' the ball to beat the player2
 				ballDirY -= paddle1DirY * 0.7;
 			}
 		}
 	}
 	
-	// OPPONENT PADDLE LOGIC	
+	// player2 PADDLE LOGIC	
 	
 	// if ball is aligned with paddle2 on x plane
 	// remember the position is the CENTER of the object
@@ -587,7 +588,7 @@ function paddlePhysics()
 		if (ball.position.y <= paddle2.position.y + paddleHeight/2
 		&&  ball.position.y >= paddle2.position.y - paddleHeight/2)
 		{
-			// and if ball is travelling towards opponent (+ve direction)
+			// and if ball is travelling towards player2 (+ve direction)
 			if (ballDirX > 0)
 			{
 				// stretch the paddle to indicate a hit
@@ -596,7 +597,7 @@ function paddlePhysics()
 				ballDirX = -ballDirX;
 				// we impact ball angle when hitting it
 				// this is not realistic physics, just spices up the gameplay
-				// allows you to 'slice' the ball to beat the opponent
+				// allows you to 'slice' the ball to beat the player2
 				ballDirY -= paddle2DirY * 0.7;
 			}
 		}
@@ -609,12 +610,12 @@ function resetBall(loser)
 	ball.position.x = 0;
 	ball.position.y = 0;
 	
-	// if player lost the last point, we send the ball to opponent
+	// if player lost the last point, we send the ball to player2
 	if (loser == 1)
 	{
 		ballDirX = -1;
 	}
-	// else if opponent lost, we send ball to player
+	// else if player2 lost, we send ball to player
 	else
 	{
 		ballDirX = 1;
@@ -625,16 +626,17 @@ function resetBall(loser)
 }
 
 var bounceTime = 0;
-// checks if either player or opponent has reached 7 points
+// checks if either player or player2 has reached 7 points
 function matchScoreCheck()
 {
+	ballSpeed = 2;
 	// if player has 7 points
 	if (score1 >= maxScore)
 	{
 		// stop the ball
 		ballSpeed = 0;
 		// write to the banner
-		document.getElementById("scores").innerHTML = "Player wins!";		
+		document.getElementById("scores").innerHTML = "Player 1 wins!";		
 		document.getElementById("winnerBoard").innerHTML = "Refresh to play again";
 		// make paddle bounce up and down
 		bounceTime++;
@@ -643,13 +645,13 @@ function matchScoreCheck()
 		paddle1.scale.z = 2 + Math.abs(Math.sin(bounceTime * 0.1)) * 10;
 		paddle1.scale.y = 2 + Math.abs(Math.sin(bounceTime * 0.05)) * 10;
 	}
-	// else if opponent has 7 points
+	// else if player2 has 7 points
 	else if (score2 >= maxScore)
 	{
 		// stop the ball
 		ballSpeed = 0;
 		// write to the banner
-		document.getElementById("scores").innerHTML = "CPU wins!";
+		document.getElementById("scores").innerHTML = "Player 2 wins!";
 		document.getElementById("winnerBoard").innerHTML = "Refresh to play again";
 		// make paddle bounce up and down
 		bounceTime++;
