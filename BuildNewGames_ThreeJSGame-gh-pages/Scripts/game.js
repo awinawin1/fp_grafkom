@@ -17,7 +17,7 @@ var fieldWidth = 400, fieldHeight = 200;
 
 // paddle variables
 var paddleWidth, paddleHeight, paddleDepth, paddleQuality;
-var paddle1DirY = 0, paddle2DirY = 0, paddleSpeed = 3;
+var paddle1DirY = 0, paddle2DirY = 0, paddleSpeed = 5;
 
 // ball variables
 var ball, paddle1, paddle2;
@@ -26,7 +26,7 @@ var ballDirX = 1, ballDirY = 1, ballSpeed = 2;
 // game-related variables
 var score1 = 0, score2 = 0;
 // you can change this to any positive whole number
-var maxScore = 7;
+var maxScore = 3;
 
 // set player2 reflexes (0 - easiest, 1 - hardest)
 // var difficulty = 0.2;
@@ -34,12 +34,12 @@ var maxScore = 7;
 // ------------------------------------- //
 // ------- GAME FUNCTIONS -------------- //
 // ------------------------------------- //
-
 function setup()
 {
 	// update the board to reflect the max score for match win
 	document.getElementById("winnerBoard").innerHTML = "First to " + maxScore + " wins!";
-	
+	player1 = document.getElementById('player1').value;
+	player2 = document.getElementById('player2').value;	
 	// now reset player and player2 scores
 	score1 = 0;
 	score2 = 0;
@@ -358,7 +358,7 @@ function ballPhysics()
 		// CPU scores
 		score2++;
 		// update scoreboard HTML
-		document.getElementById("scores").innerHTML = score1 + "-" + score2;
+		document.getElementById("scores").innerHTML = player1 + " " + score1 + "-" + score2 + " " +player2;
 		// reset ball to center
 		resetBall(2);
 		matchScoreCheck();	
@@ -370,7 +370,7 @@ function ballPhysics()
 		// Player scores
 		score1++;
 		// update scoreboard HTML
-		document.getElementById("scores").innerHTML = score1 + "-" + score2;
+		document.getElementById("scores").innerHTML = player1 + " " + score1 + "-" + score2 + " " +player2;
 		// reset ball to center
 		resetBall(1);
 		matchScoreCheck();	
@@ -542,14 +542,11 @@ function cameraPhysics()
 	camera.position.y += (paddle1.position.y - camera.position.y) * 0.05;
 	camera.position.z = paddle1.position.z + 100 + 0.04 * (-ball.position.x + paddle1.position.x);
 	
-<<<<<<< HEAD
 	// rotate to face towards the player2
 	camera.rotation.x = -0.01 * (ball.position.y) * Math.PI/180;
-=======
 	// rotate to face towards the opponent
 	camera.rotation.x = Math.PI/180;
 	//tinggi
->>>>>>> 8e83fb5bf057b80c18707c13893e0b3870f9c9f3
 	camera.rotation.y = -60 * Math.PI/180;
 	camera.rotation.z = -90 * Math.PI/180;
 }
@@ -644,7 +641,9 @@ function matchScoreCheck()
 		// stop the ball
 		ballSpeed = 0;
 		// write to the banner
-		document.getElementById("scores").innerHTML = "Player 1 wins!";		
+
+		document.getElementById("scores").innerHTML = "Player "+ player1 +" wins!";
+		// document.getElementById("scores").innerHTML = "Player 1 wins!";		
 		document.getElementById("winnerBoard").innerHTML = "Refresh to play again";
 		// make paddle bounce up and down
 		bounceTime++;
@@ -659,7 +658,8 @@ function matchScoreCheck()
 		// stop the ball
 		ballSpeed = 0;
 		// write to the banner
-		document.getElementById("scores").innerHTML = "Player 2 wins!";
+		document.getElementById("scores").innerHTML = "Player "+ player2 +" wins!";
+		// document.getElementById("scores").innerHTML = "Player 2 wins!";
 		document.getElementById("winnerBoard").innerHTML = "Refresh to play again";
 		// make paddle bounce up and down
 		bounceTime++;
