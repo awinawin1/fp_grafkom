@@ -34,12 +34,15 @@ var maxScore = 3;
 // ------------------------------------- //
 // ------- GAME FUNCTIONS -------------- //
 // ------------------------------------- //
+
 function setup()
 {
 	// update the board to reflect the max score for match win
 	document.getElementById("winnerBoard").innerHTML = "First to " + maxScore + " wins!";
+
 	player1 = document.getElementById('player1').value;
 	player2 = document.getElementById('player2').value;	
+	
 	// now reset player and player2 scores
 	score1 = 0;
 	score2 = 0;

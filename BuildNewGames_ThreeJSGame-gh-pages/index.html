@@ -13,9 +13,6 @@
 				margin: auto;
 				text-align: center;
 			}
-			#form {
-				color: white;
-			}
 			#scoreboard {
 				align-content: center;
 				text-align: center;
@@ -36,12 +33,12 @@
 				width: 100%;
 				margin: auto;
 			}
-			#player2 {
+			#p2 {
 				width: 150px;
 				float: left;
 				height: 300px;
 			}
-			#player1 {
+			#p1 {
 				width: 300px;
 				float: left;
 				height: 300px;
@@ -65,20 +62,20 @@
 				<input type="text" id="player1"/>
 				<input type="text" id="player2"/>
 			</form>
-				<button onclick="setup()">Try it</button>
+			<button onclick="setup()">Try it</button>
 		</div>
-		<div id='scoreboard'>
+		<div onload="nameplayer()" id='scoreboard'>
 			<h2 id='scores'>0-0</h2>
 			<h1 id='title'>3D PONG</h1>
 			<h2 id='winnerBoard'>First to 7 wins!</h2>
 			<div id="container">
-				<div id="player1">
+				<div id="p1">
 					<h3>Player 1
 					<br>A - move left
 					<br>D - move right
 					</h3>
 				</div>
-				<div id="player2">
+				<div id="p2">
 					<h3>Player 2
 					<br>J - move left
 					<br>L - move right
