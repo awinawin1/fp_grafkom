@@ -542,11 +542,6 @@ function cameraPhysics()
 	camera.position.y += (paddle1.position.y - camera.position.y) * 0.05;
 	camera.position.z = paddle1.position.z + 100 + 0.04 * (-ball.position.x + paddle1.position.x);
 	
-<<<<<<< HEAD
-=======
-	// rotate to face towards the player2
-	camera.rotation.x = -0.01 * (ball.position.y) * Math.PI/180;
->>>>>>> ddbd42ae26f2b8dcea18fe3abd4062f9821708c6
 	// rotate to face towards the opponent
 	camera.rotation.x = Math.PI/180;
 	//tinggi
