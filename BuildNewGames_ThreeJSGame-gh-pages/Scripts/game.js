@@ -1,91 +1,47 @@
 
-// --------------------------------------------- //
-// ------- 3D PONG built with Three.JS --------- //
-// -------- Created by Nikhil Suresh ----------- //
-// -------- Three.JS is by Mr. doob  ----------- //
-// --------------------------------------------- //
+var pointLight, spotLight;
 
-// ------------------------------------- //
-// ------- GLOBAL VARIABLES ------------ //
-// ------------------------------------- //
-
-// scene object variables
-var renderer, scene, camera, pointLight, spotLight;
-
-// field variables
 var fieldWidth = 400, fieldHeight = 200;
 
-// paddle variables
 var paddleWidth, paddleHeight, paddleDepth, paddleQuality;
 var paddle1DirY = 0, paddle2DirY = 0, paddleSpeed = 5;
 
-// ball variables
 var ball, paddle1, paddle2;
 var ballDirX = 1, ballDirY = 1, ballSpeed = 2;
 
-// game-related variables
 var score1 = 0, score2 = 0;
-// you can change this to any positive whole number
+
 var maxScore = 3;
+var renderer = new THREE.WebGLRenderer();
 
-// set player2 reflexes (0 - easiest, 1 - hardest)
-// var difficulty = 0.2;
-
-// ------------------------------------- //
-// ------- GAME FUNCTIONS -------------- //
-// ------------------------------------- //
+var scene = new THREE.Scene();
+var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
 
 function setup()
 {
-	// update the board to reflect the max score for match win
 	document.getElementById("winnerBoard").innerHTML = "First to " + maxScore + " wins!";
 
 	player1 = document.getElementById('player1').value;
 	player2 = document.getElementById('player2').value;	
 	
-	// now reset player and player2 scores
 	score1 = 0;
 	score2 = 0;
 	
-	// set up all the 3D objects in the scene	
 	createScene();
-	
-	// and let's get cracking!
 	draw();
 }
 
 function createScene()
 {
-	// set the scene size
+	//mengeset ukuran dari scene
 	var WIDTH = 640,
 	  HEIGHT = 360;
 
-	// set some camera attributes
-	var VIEW_ANGLE = 70,
-	  ASPECT = WIDTH / HEIGHT,
-	  NEAR = 0.1,
-	  FAR = 20000;
-
 	var c = document.getElementById("gameCanvas");
-
-	// create a WebGL renderer, camera
-	// and a scene
-	renderer = new THREE.WebGLRenderer();
-	camera =
-	  new THREE.PerspectiveCamera(
-		VIEW_ANGLE,
-		ASPECT,
-		NEAR,
-		FAR);
-
-	scene = new THREE.Scene();
-
-	// add the camera to the scene
 	scene.add(camera);
 	
-	// set a default position for the camera
-	// not doing this somehow messes up shadow rendering
-	camera.position.z = 150;
+	//bayangan
+	//camera.position.z = 150;
 	camera.position.y = 70;
 	//camara.position.x = 10;
 	
