@@ -16,7 +16,11 @@ var renderer = new THREE.WebGLRenderer();
 
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
+camera.position.set(-6,3,23);
 
+'use strict';
+
+const controls = new THREE.OrbitControls(camera,canvas)
 function setup()
 {
 	document.getElementById("winnerBoard").innerHTML = "First to " + maxScore + " wins!";
@@ -33,6 +37,7 @@ function setup()
 
 function createScene()
 {
+	
 	//mengeset ukuran dari scene
 	var WIDTH = 640,
 	  HEIGHT = 360;
@@ -41,7 +46,7 @@ function createScene()
 	scene.add(camera);
 	
 	//bayangan
-	//camera.position.z = 150;
+	camera.position.z = 150;
 	camera.position.y = 70;
 	//camara.position.x = 10;
 	
@@ -206,7 +211,7 @@ function createScene()
 		
 	// we iterate 10x (5x each side) to create pillars to show off shadows
 	// this is for the pillars on the left
-	for (var i = 0; i < 1; i++)
+	for (var i = 0; i < 0; i++)
 	{
 		var backdrop = new THREE.Mesh(
 		
@@ -229,7 +234,7 @@ function createScene()
 	}
 	// we iterate 10x (5x each side) to create pillars to show off shadows
 	// this is for the pillars on the right
-	for (var i = 0; i < 1; i++)
+	for (var i = 0; i < 0; i++)
 	{
 		var backdrop = new THREE.Mesh(
 
