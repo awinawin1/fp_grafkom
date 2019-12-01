@@ -37,11 +37,15 @@
 				width: 150px;
 				float: left;
 				height: 300px;
+				
+				color: white;
 			}
 			#p1 {
 				width: 300px;
 				float: left;
 				height: 300px;
+				
+				color: white;
 			}
 			#clear {
   	  			clear: both;
@@ -50,38 +54,77 @@
 				background-color: white;
 				color: black;
 			}
+			input[type=text], select {
+				width: 20%;
+				padding: 12px 20px;
+				margin: 8px 0;
+				display: inline-block;
+				border: 1px solid #ccc;
+				border-radius: 4px;
+				box-sizing: border-box;
+			}
+			.button {
+				background-color: #4CAF50; /* Green */
+				border: none;
+				color: white;
+				padding: 15px 32px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 16px;
+				margin: 4px 2px;
+				cursor: pointer;
+				-webkit-transition-duration: 0.4s; /* Safari */
+				transition-duration: 0.4s;
+				}
+			.awal{
+				width: 50%;
+				float: left;
+			}
+
+			.button1 {
+  			box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
 		</style>
-	</head>
+	</head> 
 	<body>
+		<div id="awal">
+			<div id="form">
+				
+					<form>
+						<input type="text" id="player1" placeholder="nama player1"/>
+						<br>
+						<input type="text" id="player2" placeholder="nama player2"/>
+					</form>
+					<button class="button" onclick="setup()">start</button>
+				</div>
+				
 		<div id='gameCanvas'></div>
 		<script src='./Scripts/three.min.js'></script>
 		<script src='./Scripts/keyboard.js'></script>
 		<script src='./Scripts/game.js'></script>
-		<div id="form">
-			<form>
-				<input type="text" id="player1"/>
-				<input type="text" id="player2"/>
-			</form>
-			<button onclick="setup()">Try it</button>
-		</div>
+		
 		<div onload="nameplayer()" id='scoreboard'>
 			<h2 id='scores'>0-0</h2>
-			<h1 id='title'>3D PONG</h1>
+			<h1 id='title'>GAME-PONG</h1>
 			<h2 id='winnerBoard'>First to 7 wins!</h2>
 			<div id="container">
-				<div id="p1">
-					<h3>Player 1
-					<br>A - move left
-					<br>D - move right
-					</h3>
-				</div>
-				<div id="p2">
-					<h3>Player 2
-					<br>J - move left
-					<br>L - move right
-					</h3>
-				</div>
+				
 			</div>
+			
 		</div>
+		<div id="p1">
+				<h3>Player 1
+				<br>A - move left
+				<br>D - move right
+				</h3>
+			</div>
+			<div id="p2">
+				<h3>Player 2
+				<br>J - move left
+				<br>L - move right
+				</h3>
+			</div>
 	</body>
 </html>

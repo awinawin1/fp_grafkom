@@ -11,7 +11,7 @@ var ballDirX = 1, ballDirY = 1, ballSpeed = 2;
 
 var score1 = 0, score2 = 0;
 
-var maxScore = 3;
+var maxScore = 7;
 var renderer = new THREE.WebGLRenderer();
 
 var scene = new THREE.Scene();
@@ -46,8 +46,8 @@ function createScene()
 	scene.add(camera);
 	
 	//bayangan
-	camera.position.z = 150;
-	camera.position.y = 70;
+	// camera.position.z = 150;
+	// camera.position.y = 70;
 	//camara.position.x = 10;
 	
 	// start the renderer
@@ -65,13 +65,13 @@ function createScene()
 	var paddle1Material =
 	  new THREE.MeshLambertMaterial(
 		{
-		  color: 0x1B32C0
+		  color: 0x45ba48
 		});
 	// create the paddle2's material
 	var paddle2Material =
 	  new THREE.MeshLambertMaterial(
 		{
-		  color: 0xFF4045
+		  color: 0x0033cc
 		});
 	// membuat papan pong	
 	var planeMaterial =
@@ -103,8 +103,8 @@ function createScene()
 	var plane = new THREE.Mesh(
 
 	  new THREE.PlaneGeometry(
-		planeWidth * 0.95,	// 95% of table width, since we want to show where the ball goes out-of-bounds
-		planeHeight,
+		planeWidth *0.5,	// 95% of table width, since we want to show where the ball goes out-of-bounds
+		planeHeight *2,
 		planeQuality,
 		planeQuality),
 
@@ -116,8 +116,8 @@ function createScene()
 	var table = new THREE.Mesh(
 
 	  new THREE.CubeGeometry(
-		planeWidth * 1.05,	// this creates the feel of a billiards table, with a lining
-		planeHeight * 1.03,
+		planeWidth * 0.6,	// this creates the feel of a billiards table, with a lining
+		planeHeight * 2.2,
 		100,				// an arbitrary depth, the camera can't see much of it anyway
 		planeQuality,
 		planeQuality,
@@ -162,8 +162,8 @@ function createScene()
     ball.castShadow = true;
 	
 	// // set up the paddle vars
-	paddleWidth = 10;
-	paddleHeight = 30;
+	paddleWidth = 30;
+	paddleHeight = 10;
 	paddleDepth = 10;
 	paddleQuality = 1;
 		
@@ -228,8 +228,8 @@ function createScene()
 		backdrop.position.x = -50 + i * 100;
 		backdrop.position.y = 230;
 		backdrop.position.z = -30;		
-		backdrop.castShadow = true;
-		backdrop.receiveShadow = true;		  
+		//backdrop.castShadow = true;
+		//backdrop.receiveShadow = true;		  
 		scene.add(backdrop);	
 	}
 	// we iterate 10x (5x each side) to create pillars to show off shadows
@@ -296,7 +296,7 @@ function createScene()
     scene.add(spotLight);
 	
 	// MAGIC SHADOW CREATOR DELUXE EDITION with Lights PackTM DLC
-	renderer.shadowMapEnabled = true;		
+	//renderer.shadowMapEnabled = true;		
 }
 
 function draw()
