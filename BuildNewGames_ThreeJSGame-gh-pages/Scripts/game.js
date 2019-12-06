@@ -345,7 +345,7 @@ function ballPhysics()
 	{
 		ballDirX = -ballDirX;
 	}	
-	// if ball goes off the bottom side (side of table)
+	// if ball goes off the bottom side (side of table)a
 	if (ball.position.y >= fieldWidth/2)
 	{
 		ballDirX = -ballDirX;
